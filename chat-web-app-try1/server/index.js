@@ -34,5 +34,5 @@ app.use("/api/posts",postRoute);
 
 
 app.listen(8800,()=>{
-  console.log("Backedn server is running ");
+  console.log("Backend server is running ");
 })
