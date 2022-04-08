@@ -1,8 +1,11 @@
 import './post.css'
 import {MoreVert} from '@material-ui/icons';
+import {Users} from '../../dummyData'
 
 
-export default function Post(){
+export default function Post({post}){
+  console.log(post)
+
   return(
 
 
@@ -10,9 +13,9 @@ export default function Post(){
       <div className = "postWrapper">
         <div className = "postTop">
           <div className = "postTopLeft">
-            <img className = "postProfileImg" alt="" src=""/>
-            <span className = "postUsername"> Name 1 </span>
-            <span className = "postDate"> 5 min ago </span>
+            <img className = "postProfileImg" alt="" src={Users.filter(u=>u.id === post.userId)[0].profilePicture}/>
+            <span className = "postUsername"> {Users.filter(u=>u.id === post.userId)[0].username} </span>
+            <span className = "postDate"> {post.date} </span>
           </div>
 
 
@@ -22,18 +25,18 @@ export default function Post(){
         </div>
 
         <div className = "postCenter">
-          <span className= "postText">Post Text </span>
+          <span className= "postText">{post?.desc} </span>
           <img src = "" alt = "" className = "postImg" />
         </div>
 
         <div className = "postBottom">
           <div className = "postBottomLeft">
             <span className = "likeIcon">LIKE</span>
-            <span className = "postLikeCounter">789 likes</span>
+            <span className = "postLikeCounter">{post.like} likes</span>
           </div>
 
           <div className = "postBottomRight">
-            <span className = "postCommentText">9 comments</span>
+            <span className = "postCommentText">{post.comment} comments</span>
           </div>
 
         </div>

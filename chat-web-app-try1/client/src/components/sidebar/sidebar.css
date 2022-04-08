@@ -1,7 +1,10 @@
 .sidebar{
 flex: 2.5;
 height: calc(100vh - 50px);
-background: green;
+background: #008cff;
+opacity: 95%;
+position: sticky;
+top : 50px;
 overflow-y:scroll;
 
 }
@@ -51,17 +54,4 @@ overflow-y:scroll;
   padding:0;
   margin:0;
   list-style:none;
-}
-
-.sidebarFriend{
-  display:flex;
-  align-items: center;
-  margin-bottom : 15px;
-}
-.sidebarFriendImg{
-  width:32px;
-  height:32px;
-  border-radius:50%;
-  object-fit:cover;
-  margin-right: 10px;
 }
