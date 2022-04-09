@@ -1,21 +1,33 @@
-import {useState} from 'react'
-
+import {useState,useEffect} from 'react'
+import axios from 'axios'
 import './post.css'
 import {MoreVert} from '@material-ui/icons';
-import {Users} from '../../dummyData'
+// import {Users} from '../../dummyData'
 
 
 export default function Post({post}){
   console.log(post)
 
-  const [like,setLike] = useState(post.like);
+  const [like,setLike] = useState(post.likes.length);
   const [isLiked,setIsLiked] = useState(false);
-
+  const [user,setUser] = useState({});
+  useEffect(()=>{
+    // console.log("feed rendered")
+    const fetchUser = async ()=>{
+      // http://localhost:8800/api/users/624c4acddc743f8df8a931ac
+      const res = await axios.get(`/users/${post.userId}`)
+      // console.log(res);
+      setUser(res.data)
+    }
+    fetchUser();
+    },[])
 
   const likeHandler = ()=>{
     setLike(isLiked? like-1 : like+1);
     setIsLiked(!isLiked);
   }
+
+
   return(
 
 
@@ -23,8 +35,8 @@ export default function Post({post}){
       <div className = "postWrapper">
         <div className = "postTop">
           <div className = "postTopLeft">
-            <img className = "postProfileImg" alt="" src={Users.filter(u=>u.id === post.userId)[0].profilePicture}/>
-            <span className = "postUsername"> {Users.filter(u=>u.id === post.userId)[0].username} </span>
+            <img className = "postProfileImg" alt="" src={user.profilePicture}/>
+            <span className = "postUsername"> {user.username} </span>
             <span className = "postDate"> {post.date} </span>
           </div>
 
@@ -36,7 +48,7 @@ export default function Post({post}){
 
         <div className = "postCenter">
           <span className= "postText">{post?.desc} </span>
-          <img src = "" alt = "" className = "postImg" />
+          <img src = {post.img} alt = "" className = "postImg" />
         </div>
 
         <div className = "postBottom">

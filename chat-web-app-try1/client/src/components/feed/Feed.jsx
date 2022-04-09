@@ -7,13 +7,14 @@ import axios from 'axios';
 
 export default function Feed(){
 
-  const [post,setPosts] = useState([]);
+  const [posts,setPosts] = useState([]);
 
   useEffect(()=>{
     // console.log("feed rendered")
     const fetchPosts = async ()=>{
-      const res = await axios.get("/timeline/624c4f290f081890e6a1f5bb")
-      console.log(res);
+      const res = await axios.get("posts/timeline/624c4f290f081890e6a1f5bb")
+      // console.log(res);
+      setPosts(res.data)
     }
     fetchPosts();
     },[])
@@ -23,9 +24,9 @@ export default function Feed(){
 
       <div className="feedWrapper">
         <Share />
-        {/*Posts.map(p=>(
+        {posts.map(p=>(
           <Post key ={p.id} post={p} />
-        ))*/}
+        ))}
 
       </div>
     </div>
