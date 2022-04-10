@@ -15,7 +15,20 @@ margin-left: 20px;
   list-style: none;
 
 }
-
+.rightbarFollowBtn{
+  color : white;
+  background: #008cff;
+  border: none;
+  padding : 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.rightbarFollowBtn:hover{
+  opacity:70%;
+  background-color:black;
+  cursor:pointer;
+}
 .rightbarTitle{
   font-size: 18px ;
   font-weight: 500;

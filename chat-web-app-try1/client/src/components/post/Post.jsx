@@ -41,6 +41,7 @@ const {user:currUser} = useContext(AuthContext);
 
     try{
       axios.put(`/posts/${post._id}/like`,{userId:currUser._id});
+      
     }catch(err){
 
     }
@@ -68,7 +69,7 @@ const {user:currUser} = useContext(AuthContext);
         </div>
 
         <div className = "postCenter">
-          <span className= "postText">{post?.desc} </span>
+          <span className= "postText">{post?.description} </span>
           <img src = {post.img} alt = "" className = "postImg" />
         </div>
 

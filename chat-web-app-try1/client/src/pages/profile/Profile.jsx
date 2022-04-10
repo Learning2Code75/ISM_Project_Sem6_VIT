@@ -21,7 +21,7 @@ export default function Profile(){
       setUser(res.data)
     }
     fetchUser();
-    },[])
+  },[params.username])
 
 
   return(
@@ -42,7 +42,7 @@ export default function Profile(){
           </div>
 
           <div className="profileRightBottom">
-            <Feed username={params.username}/>
+            <Feed username={params.username} view/>
             <Rightbar user={user} />
           </div>
         </div>
