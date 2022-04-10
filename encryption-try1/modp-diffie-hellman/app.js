@@ -2,7 +2,7 @@ const crypto = require("crypto");
 
 //client 1 :
 const alice = crypto.getDiffieHellman('modp15');
-
+console.log(alice);
 //client 2 :
 const bob = crypto.getDiffieHellman('modp15');
 

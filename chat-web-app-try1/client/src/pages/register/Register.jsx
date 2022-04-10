@@ -14,7 +14,7 @@ export default function Register(){
           <div className = "loginBox">
             <input placeholder="email" className="loginInput" />
             <input placeholder="username" className="loginInput" />
-            <input placeholder="password" className="loginInput" />
+            <input placeholder="password" className="loginInput" minLength="6" />
 
             <input placeholder="confirm password" className="loginInput" />
             <button className ="loginButton">Register</button>
