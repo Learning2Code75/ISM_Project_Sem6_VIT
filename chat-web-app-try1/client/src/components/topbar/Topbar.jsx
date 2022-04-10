@@ -29,6 +29,7 @@ export default function Topbar(){
           <div className = "topbarLinks">
             <Link to="/"><span className = "tobarLink">Homepage</span></Link>
             <span className = "tobarLink">Timeline</span>
+
           </div>
 
           <div className = "topbarIcons">
@@ -36,10 +37,13 @@ export default function Topbar(){
               <Person />
               <span className = "topbarIconBadge">1</span>
             </div>
-            <div className = "topbarIconItem">
-              <Chat />
-              <span className = "topbarIconBadge">1</span>
-            </div>
+            <Link to="/messenger">
+              <div className = "topbarIconItem">
+                <Chat />
+                <span className = "topbarIconBadge">1</span>
+              </div>
+
+            </Link>
             <div className = "topbarIconItem">
               <Notifications />
               <span className = "topbarIconBadge">1</span>
