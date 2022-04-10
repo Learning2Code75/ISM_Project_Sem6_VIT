@@ -38,7 +38,12 @@ router.get('/generate-key-pair-ecdh',(req,res)=>{
   const privateKey = user.getPrivateKey();
   // res.send({publicKey,privateKey})
   // let fuser = {...user}
-  res.send({publicKey:publicKey.toString('base64'),privateKey:privateKey.toString('base64'),user:user.getPrime().toString('hex')});
+  console.log(typeof user);
+  // const forUser = user.getPrime().toString('hex');
+  let formatteduser = JSON.stringify(user)
+  // console.log(JSON.stringify(user))
+  console.log(user.getPrime());
+  res.send({publicKey:publicKey.toString('base64'),privateKey:privateKey.toString('base64'),user:user.getPrime()});
 
 })
 
@@ -94,11 +99,15 @@ router.post('/verify',(req,res)=>{
 router.post('/create-shared-secret',(req,res)=>{
   let {otherPublicKey,user} = req.body;
   otherPublicKey = Buffer.from(otherPublicKey,'base64');
-  user = Buffer.from(user,'hex');
+  user = user.toString();
+  console.log(user)
+
+  // user = Buffer.from(user,'hex');
   const sharedSecret = user.computeSecret(otherPublicKey,null,'hex');
   return({sharedSecret});
 })
 
-// encrypt message using aes
+// encrypt messages henceforth using aes
+
 
 module.exports = router;
