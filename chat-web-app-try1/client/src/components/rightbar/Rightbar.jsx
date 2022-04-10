@@ -3,7 +3,7 @@ import './rightbar.css';
 import {Users} from '../../dummyData'
 import Online from '../online/Online';
 
-export default function Rightbar({profile}){
+export default function Rightbar({user}){
 
   const HomeRightbar = ()=>{
     return (
@@ -22,17 +22,18 @@ export default function Rightbar({profile}){
     );
   }
   const ProfileRightbar = ()=>{
+    console.log(user)
     return(
       <>
         <h2 className="rightbarTitle">User Information</h2>
         <div className = "rightbarInfo">
           <div className = "rightbarInfoItem">
             <span className = "rightbarInfoKey">City:</span>
-            <span className = "rightbarInfoValue">NY</span>
+            <span className = "rightbarInfoValue">{user.username}</span>
           </div>
           <div className = "rightbarInfoItem">
             <span className = "rightbarInfoKey">From:</span>
-            <span className = "rightbarInfoValue">Madrid</span>
+            <span className = "rightbarInfoValue">{user.email}</span>
           </div>
 
         </div>
@@ -75,7 +76,7 @@ export default function Rightbar({profile}){
     <div className="rightbar">
       <div className = "rightbarWrapper">
 {
-  profile? <ProfileRightbar /> : <HomeRightbar/>
+  user? <ProfileRightbar /> : <HomeRightbar/>
 }
 
 
