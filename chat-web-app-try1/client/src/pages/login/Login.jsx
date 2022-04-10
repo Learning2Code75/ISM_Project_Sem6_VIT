@@ -1,17 +1,24 @@
 import './login.css'
-import {useRef} from 'react';
+import {useRef,useContext} from 'react';
+import {loginCall} from '../../apiCalls'
+import {AuthContext} from '../../context/AuthContext'
+import {Link} from 'react-router-dom';
+
 
 export default function Login(){
   const email = useRef();
   const password = useRef();
 
+  const {user,isFetching,error,dispatch} = useContext(AuthContext);
+
   const handleLoginSubmit= (e)=>{
     e.preventDefault();
-    console.log(email.current.value);
-    console.log(password.current.value)
+    // console.log(email.current.value);
+    // console.log(password.current.value);
+    loginCall({email:email.current.value,password:password.current.value},dispatch);
   }
 
-
+console.log(user)
   return(
     <div className = "login">
       <div className = "loginWrapper">
@@ -25,9 +32,11 @@ export default function Login(){
           <form className = "loginBox" onSubmit={handleLoginSubmit}>
             <input type="email" placeholder="email" className="loginInput" ref ={email} required/>
             <input type="password" placeholder="password" className="loginInput" ref ={password} required/>
-            <button className ="loginButton">Login</button>
+            <button className ="loginButton">{isFetching?"Loading...":"Login"}</button>
             <span className = "loginForgot">Forgot Password?</span>
-            <button className = "loginRegisterButton"> Create new Account </button>
+            <Link to="/register">
+            <button className = "loginRegisterButton"> Create new Account </button>            
+            </Link>
           </form>
         </div>
       </div>

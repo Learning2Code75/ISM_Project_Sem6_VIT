@@ -1,18 +1,25 @@
-import {useState,useEffect} from 'react'
+import {useState,useEffect,useContext} from 'react'
 import axios from 'axios'
 import './post.css'
 import {MoreVert} from '@material-ui/icons';
 // import {Users} from '../../dummyData'
 import {Link} from 'react-router-dom';
-import {format} from 'timeago.js'
+import {format} from 'timeago.js';
+import {AuthContext} from '../../context/AuthContext';
+
 
 
 export default function Post({post}){
   console.log(post)
-
+const {user:currUser} = useContext(AuthContext);
   const [like,setLike] = useState(post.likes.length);
   const [isLiked,setIsLiked] = useState(false);
   const [user,setUser] = useState({});
+
+  useEffect(()=>{
+    setIsLiked(post.likes.includes(currUser._id))
+  },[currUser._id,post.likes])
+
   useEffect(()=>{
     // console.log("feed rendered")
     const fetchUser = async ()=>{
@@ -24,9 +31,19 @@ export default function Post({post}){
     fetchUser();
     },[post.userId])
 
+
   const likeHandler = ()=>{
     setLike(isLiked? like-1 : like+1);
     setIsLiked(!isLiked);
+
+    // http://localhost:8800/api/posts/:postid/like
+    // userId
+
+    try{
+      axios.put(`/posts/${post._id}/like`,{userId:currUser._id});
+    }catch(err){
+
+    }
   }
 
 

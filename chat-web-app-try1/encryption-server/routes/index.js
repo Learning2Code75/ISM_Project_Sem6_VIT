@@ -27,7 +27,7 @@ router.get('/generate-key-pair-rsa',(req,res)=>{
 })
 
 // USED BY : user1 and user2 to make their pair of public, private keys
-//localhost:5500/generate-key-pair-ecdh
+//localhost:5500/generate-key-pair-ecdh : modp
 router.get('/generate-key-pair-ecdh',(req,res)=>{
    const user = crypto.getDiffieHellman('modp15');
    // const user = crypto.createECDH('secp521r1');
@@ -48,6 +48,7 @@ router.get('/generate-key-pair-ecdh',(req,res)=>{
 })
 
 
+// https://github.com/developmentil/ecdh/blob/master/examples/ecdh.js
 
 
 
