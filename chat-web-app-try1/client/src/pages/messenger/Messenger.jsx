@@ -34,7 +34,7 @@ export default function Messenger(){
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             {conversations.map(c=>(
-              <Conversation key={c._id} c={c} />
+              <Conversation key={c._id} c={c} currUser={user} />
             ))}
           </div>
         </div>
