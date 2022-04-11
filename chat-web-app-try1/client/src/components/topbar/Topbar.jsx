@@ -6,9 +6,19 @@ import {AuthContext} from '../../context/AuthContext'
 
 export default function Topbar(){
 
-    const {user} = useContext(AuthContext);
+    const {user,dispatch} = useContext(AuthContext);
     // console.log(user);
-
+    if(user){
+      localStorage.setItem('username',user.username);
+      localStorage.setItem('userId',user._id);
+      localStorage.setItem('profilePicture',user.profilePicture);
+      localStorage.setItem('email',user.email)
+    }
+    const logoutHandle = (e)=>{
+      e.preventDefault();
+      localStorage.clear();
+      dispatch({type:"LOGOUT"})
+    }
     return (
 
       <div className = "topbarContainer">
@@ -28,7 +38,7 @@ export default function Topbar(){
         <div className = "topbarRight">
           <div className = "topbarLinks">
             <Link to="/"><span className = "tobarLink">Homepage</span></Link>
-            <span className = "tobarLink">Timeline</span>
+            <span className = "tobarLink" onClick={logoutHandle}>Logout</span>
 
           </div>
 
@@ -49,10 +59,11 @@ export default function Topbar(){
               <span className = "topbarIconBadge">1</span>
             </div>
           </div>
-          <Link  className="uname" to={`/profile/${user.username}`}>
-          <span >{user.username} </span>
 
-          <img src={user.profilePicture} alt ="" className = "topbarImg"/>
+          <Link  className="uname" to={`/profile/${user?user.username : localStorage.getItem('username')}`}>
+          <span >{user?user.username:localStorage.getItem('username')} </span>
+
+          <img src={user?user.profilePicture:localStorage.getItem('profilePicture')} alt ="" className = "topbarImg"/>
 
           </Link>
 

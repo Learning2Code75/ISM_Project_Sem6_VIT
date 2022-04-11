@@ -5,14 +5,24 @@ import Online from '../online/Online';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {AuthContext} from '../../context/AuthContext'
-
+import {loginCall} from '../../apiCalls'
 export default function Rightbar({user}){
   const [friends,setFriends] = useState([]);
   const {user:currUser,dispatch} = useContext(AuthContext);
+  // 
+  //
+  // if(!currUser){
+  //   const pass = prompt('Please enter your password again!');
+  //   loginCall({
+  //     email:localStorage.getItem("email"),
+  //     password:pass
+  //   },dispatch)
+  // }
   const [followed,setFollowed] = useState(currUser.followings.includes(user?._id));
+
   useEffect(()=>{
     currUser.followings.includes(user?._id)
-  },[currUser,user])
+  },[user])
 
   useEffect(()=>{
     const getFriends = async()=>{

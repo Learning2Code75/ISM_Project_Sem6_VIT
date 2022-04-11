@@ -20,11 +20,11 @@ export default function Feed({username,view}){
       // ? await axios.get(`posts/profile/${username}`)
       // : await axios.get("posts/timeline/624c4f290f081890e6a1f5bb")
       // console.log(res);
-
+      const luserId = await localStorage.getItem('userId');
       if(username){
         res = await axios.get("/posts/profile/"+username);
       }else{
-        res = await axios.get("posts/timeline/"+user._id);
+        res = await axios.get(`posts/timeline/${luserId}`);
       }
 
       setPosts(res.data.sort( (p1,p2)=>{
@@ -32,7 +32,8 @@ export default function Feed({username,view}){
       } ))
     }
     fetchPosts();
-  },[username,user._id])
+    // console.log(posts)
+  },[username])
 
   return(
     <>

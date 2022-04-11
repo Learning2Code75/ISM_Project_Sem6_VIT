@@ -11,7 +11,14 @@ import {AuthContext} from '../../context/AuthContext';
 
 export default function Post({post}){
   console.log(post)
-const {user:currUser} = useContext(AuthContext);
+  let {user:currUser} = useContext(AuthContext);
+  if(!currUser){
+    currUser = {
+      username:localStorage.getItem("username"),
+      _id:localStorage.getItem("userId"),
+      profilePicture:localStorage.getItem("profilePicture")
+    }
+  }
   const [like,setLike] = useState(post.likes.length);
   const [isLiked,setIsLiked] = useState(false);
   const [user,setUser] = useState({});
@@ -41,7 +48,7 @@ const {user:currUser} = useContext(AuthContext);
 
     try{
       axios.put(`/posts/${post._id}/like`,{userId:currUser._id});
-      
+
     }catch(err){
 
     }

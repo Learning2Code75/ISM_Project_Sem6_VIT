@@ -34,6 +34,12 @@ const AuthReducer = (state,action) =>{
           followings : state.user.followings.filter(f=>f!==action.payload)
         }
       }
+    case "LOGOUT":
+      return{
+        user:null,
+        isFetching:false,
+        error:false
+      }
     default:
       return state;
   }

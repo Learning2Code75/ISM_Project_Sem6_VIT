@@ -19,20 +19,20 @@ function App() {
     <Router>
       <Switch>
         <Route exact path = "/" >
-          {user?<Home />:<Register />}
+          {(user||localStorage.getItem('username'))?<Home />:<Register />}
         </Route>
         <Route path = "/messenger" >
-          {!user ? <Redirect to="/" /> : <Messenger />}
+          {!(user|| localStorage.getItem('username')) ? <Redirect to="/" /> : <Messenger />}
           {/*<Messenger/>*/}
         </Route>
         <Route path = "/login">
-          {user?<Redirect to="/"/>:<Login />}
+          {(user||localStorage.getItem('username'))?<Redirect to="/"/>:<Login />}
         </Route>
         <Route path = "/register">
-          {user?<Redirect to="/"/>:<Register />}
+          {(user||localStorage.getItem('username'))?<Redirect to="/"/>:<Register />}
         </Route>
         <Route path = "/profile/:username">
-          <Profile />
+          {!(user||localStorage.getItem('username'))?<Redirect to="/"/>:<Profile />}
         </Route>
       </Switch>
     </Router>

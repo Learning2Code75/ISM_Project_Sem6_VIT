@@ -16,9 +16,9 @@ export default function Login(){
     // console.log(email.current.value);
     // console.log(password.current.value);
     loginCall({email:email.current.value,password:password.current.value},dispatch);
+
   }
 
-console.log(user)
   return(
     <div className = "login">
       <div className = "loginWrapper">
@@ -35,7 +35,7 @@ console.log(user)
             <button className ="loginButton">{isFetching?"Loading...":"Login"}</button>
             <span className = "loginForgot">Forgot Password?</span>
             <Link to="/register">
-            <button className = "loginRegisterButton"> Create new Account </button>            
+            <button className = "loginRegisterButton"> Create new Account </button>
             </Link>
           </form>
         </div>
