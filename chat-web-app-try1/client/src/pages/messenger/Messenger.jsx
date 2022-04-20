@@ -12,13 +12,16 @@ export default function Messenger(){
   const [conversations, setConversations] = useState([]);
 
   const {user} = useContext(AuthContext);
+  // console.log(user)
+
 
   useEffect(()=>{
     // http://localhost:8800/api/conversations/6252bba23acb143e4d8632cb
     const getConversations = async()=>{
       try{
         const res = await axios.get(`/conversations/${user._id}`);
-        // console.log(res);
+        console.log(res);
+
         setConversations(res.data);
       }catch(err){
         console.log(err)
@@ -27,15 +30,20 @@ export default function Messenger(){
     getConversations();
   },[user._id])
 
+
   return(
     <>
     <Topbar />
     <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            {conversations.map(c=>(
+            {console.log(conversations)
+              conversations.map(c=>(
+
+              ))
+              /*conversations.map(c=>(
               <Conversation key={c._id} c={c} currUser={user} />
-            ))}
+            ))*/}
           </div>
         </div>
 
