@@ -51,6 +51,7 @@ padding : 0 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position : relative;
 }
 .chatBoxTop{
   overflow-y: scroll;
@@ -69,4 +70,14 @@ padding : 0 15px;
   color : white;
   height: 100%;
   padding: 0 20px;
+}
+
+.noConverationText{
+  position: absolute;
+  top: 10%;
+  font-size : 1.5rem;
+  color : #008cff;
+  font-weight:bold;
+  text-align: center;
+  width:100%;
 }
