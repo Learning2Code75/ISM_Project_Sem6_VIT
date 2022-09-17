@@ -1,6 +1,6 @@
 const io = require("socket.io")(9900,{
   cors:{
-    origin:"http://localhost:3000"
+    origin:"http://192.168.4.219:3000",
   }
 });
 
@@ -23,7 +23,7 @@ io.on("connection",(socket)=>{
   // taking userId and socket id from the user after every connection
   // connect
   socket.on("addUser", userId=>{
-    console.log("a user connected")
+    console.log("user :"+userId+" connected")
 
     addUserUtil(userId,socket.id)
     io.emit("getUsers",users)

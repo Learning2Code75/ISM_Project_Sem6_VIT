@@ -24,7 +24,11 @@ export default function Messenger(){
 
 
   useEffect(()=>{
-    socket.current = io("ws://localhost:9900")
+    // socket.current = io("ws://192.168.211.219:8900")
+    socket.current = io("ws://192.168.4.219:8900")
+    // socket.current = io("ws://localhost:9900")
+
+    // socket.current = io("ws://192.168.201.219:8900")
     socket.current.on("getMessage", data =>{
       setArrivalMessage({
         sender : data.senderId,
